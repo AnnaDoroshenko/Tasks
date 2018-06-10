@@ -1,5 +1,6 @@
 #include <iostream>
 #include <vector>
+#include <optional>
 
 
 void findMinMax(
@@ -11,15 +12,13 @@ std::pair<unsigned int, unsigned int> findMinMax(const std::vector<unsigned int>
 int main() {
     unsigned int min;
     unsigned int max;
-    // const std::vector<unsigned int> vect = {3, 4, 7, 9, 2};
-    const std::vector<unsigned int> vect = {};
-    // const std::pair<unsigned int, unsigned int> minMaxpair;
+    const std::vector<unsigned int> vect = {3, 4, 7, 9, 2};
+    // const std::vector<unsigned int> vect = {};
 
     if (vect.size() != 0) {
-        // FIXME: you make your code evaluate the func findMinMax() twice (expensive!).
-        // Call once, store result, access .first and .second from the stored result.
-        std::cout << "min = " << findMinMax(vect).first << std::endl;
-        std::cout << "max = " << findMinMax(vect).second << std::endl;
+        const std::pair<unsigned int, unsigned int> minMaxPair = findMinMax(vect);
+        std::cout << "min = " << minMaxPair.first << std::endl;
+        std::cout << "max = " << minMaxPair.second << std::endl;
     }
     //
     // findMinMax(vect, &min, max);
@@ -66,7 +65,7 @@ std::pair<unsigned int, unsigned int> findMinMax(const std::vector<unsigned int>
         // If your linter (vim) complains about it, find out how to add this
         // compiler argument in your .vimrc for the linter.
         // Also, why is there no ";" at the end??
-        return // boost::optional<std::pair<unsigned int, unsigned int> > ();
+        return std::optional<std::pair< unsigned int, unsigned int>> ();
     }
 
     unsigned int min = array[0];
@@ -80,9 +79,6 @@ std::pair<unsigned int, unsigned int> findMinMax(const std::vector<unsigned int>
         }
     }
     
-    // FIXME: Good, but for simplicity use just {min, max}.
-    // The compiler understands the type of {min, max} because it knows the
-    // functiuon return type.
-    return std::make_pair(min, max);
+    return {min, max};
+    // return std::make_pair(min, max);
 }
-

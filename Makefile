@@ -18,11 +18,11 @@ all: cleanExe $(mainFileName)
 
 # Compilation
 %.o: %.cpp $(filesH)
-	g++ $(OPTIMIZATION_FLAG) -c $<
+	g++ $(OPTIMIZATION_FLAG) -c $< -std=c++17
 
 # Execution
 $(mainFileName): $(filesObj)
-	g++ $(OPTIMIZATION_FLAG) $^ -o $@
+	g++ $(OPTIMIZATION_FLAG) $^ -o $@ -std=c++17
 
 
 # Utils

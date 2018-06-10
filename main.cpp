@@ -12,13 +12,14 @@ int main() {
     unsigned int min;
     unsigned int max;
     std::vector<unsigned int> vect = {3, 4, 7, 9, 2};
+    // std::vector<unsigned int> vect = {};
 
-    // FIXME: WIll fail for empty vector. Think about how to remedy that
     findMinMax(vect, &min, max);
 
-    std::cout << "min = " << min << std::endl;
-    std::cout << "max = " << max << std::endl;
-
+    if (vect.size() != 0) {
+        std::cout << "min = " << min << std::endl;
+        std::cout << "max = " << max << std::endl;
+    }
 
     return 0;
 }
@@ -27,19 +28,21 @@ int main() {
 void findMinMax(
         const std::vector<unsigned int>& array,
         unsigned int* min, unsigned int& max) {
+    if (array.size() == 0) {
+        std::cout << "Gimme numbers, clever one" << std::endl;
+        return;
+    }
     *min = array[0];
     max = array[0];
     for (unsigned int i = 1; i < array.size(); i++) {
-        // FIXME: no real readability benefits from making a separate variable
-        // (but if you DO make it, make it const!)
-        unsigned int currentInt = *min;
-        if(array[i] < currentInt) {
+        if (array[i] < *min) {
             *min = array[i];
         }
         if (array[i] > max) {
             max = array[i];
         }
     }
+return;
 }
 
 

@@ -6,17 +6,17 @@
 void findMinMax(
         const std::vector<unsigned int>& array,
         unsigned int* min, unsigned int& max);
-std::pair<unsigned int, unsigned int> findMinMax(const std::vector<unsigned int>& array);
+std::optional<std::pair<unsigned int, unsigned int>> findMinMax(const std::vector<unsigned int>& array);
 
 
 int main() {
     unsigned int min;
     unsigned int max;
-    const std::vector<unsigned int> vect = {3, 4, 7, 9, 2};
-    // const std::vector<unsigned int> vect = {};
+    // const std::vector<unsigned int> vect = {3, 4, 7, 9, 2};
+    const std::vector<unsigned int> vect = {};
 
     if (vect.size() != 0) {
-        const std::pair<unsigned int, unsigned int> minMaxPair = findMinMax(vect);
+        const std::pair<unsigned int, unsigned int> minMaxPair = findMinMax(vect).value();
         std::cout << "min = " << minMaxPair.first << std::endl;
         std::cout << "max = " << minMaxPair.second << std::endl;
     }
@@ -52,7 +52,7 @@ void findMinMax(
 }
 
 
-std::pair<unsigned int, unsigned int> findMinMax(const std::vector<unsigned int>& array) {
+std::optional<std::pair<unsigned int, unsigned int>> findMinMax(const std::vector<unsigned int>& array) {
     if (array.size() == 0) {
         std::cout << "Gimme numbers, clever one" << std::endl;
         // FIXME: "boost" is a widely-known library for c++. Many things from there
@@ -78,7 +78,7 @@ std::pair<unsigned int, unsigned int> findMinMax(const std::vector<unsigned int>
             max = array[i];
         }
     }
+    std::pair<unsigned int, unsigned int> resultPair = std::make_pair(min, max);
     
-    return {min, max};
-    // return std::make_pair(min, max);
+    return std::optional<std::pair< unsigned int, unsigned int>> (resultPair);
 }

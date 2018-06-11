@@ -16,9 +16,7 @@ int main() {
     const std::vector<unsigned int> vect = {};
     const std::optional<std::pair<unsigned int, unsigned int>> foundPair = findMinMax(vect);
 
-    if (vect.size() != 0) {
-        // FIXME: OK, but better to use what std::optional offers you instead of
-        // checking size() yourself. Do: if(foundPair) {...}
+    if (foundPair.has_value()) {
         const std::pair<unsigned int, unsigned int> minMaxPair = foundPair.value();
         std::cout << "min = " << minMaxPair.first << std::endl;
         std::cout << "max = " << minMaxPair.second << std::endl;
@@ -69,10 +67,9 @@ std::optional<std::pair<unsigned int, unsigned int>> findMinMax(const std::vecto
     if (array.size() == 0) {
         std::cout << "Gimme numbers, clever one" << std::endl;
 
-        // FIXME: we've agreed that this one is probably equal to {} or std::nullopt.
-        // Use one of those two.
         // return std::optional<std::pair<unsigned int, unsigned int>> ();
-        return std::nullopt;
+        // return std::nullopt;
+        return {};
     }
 
     unsigned int min = array[0];
@@ -86,11 +83,6 @@ std::optional<std::pair<unsigned int, unsigned int>> findMinMax(const std::vecto
         }
     }
 
-    // std::pair<unsigned int, unsigned int> resultPair = std::make_pair(min, max);
-    // return std::optional<std::pair< unsigned int, unsigned int>> (resultPair);
-    // FIXME: better do just:
     // return std::optional<std::pair< unsigned int, unsigned int>> (std::make_pair(min, max));
-    // FIXME: Or even better (use the fact that this thing will be implicitly
-    // converted into optional (helps readability).
     return std::make_pair(min, max);
 }

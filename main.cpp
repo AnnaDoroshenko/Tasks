@@ -71,7 +71,8 @@ std::optional<std::pair<unsigned int, unsigned int>> findMinMax(const std::vecto
 
         // FIXME: we've agreed that this one is probably equal to {} or std::nullopt.
         // Use one of those two.
-        return std::optional<std::pair<unsigned int, unsigned int>> ();
+        // return std::optional<std::pair<unsigned int, unsigned int>> ();
+        return std::nullopt;
     }
 
     unsigned int min = array[0];

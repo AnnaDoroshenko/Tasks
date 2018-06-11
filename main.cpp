@@ -16,7 +16,7 @@ int main() {
     const std::vector<unsigned int> vect = {};
     const std::optional<std::pair<unsigned int, unsigned int>> foundPair = findMinMax(vect);
 
-    if (foundPair.has_value()) {
+    if (foundPair) {
         const std::pair<unsigned int, unsigned int> minMaxPair = foundPair.value();
         std::cout << "min = " << minMaxPair.first << std::endl;
         std::cout << "max = " << minMaxPair.second << std::endl;

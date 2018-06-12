@@ -22,15 +22,6 @@ int main() {
         std::cout << "max = " << minMaxPair.second << std::endl;
     }
 
-    // FIXME: Remember the video about using IFs?
-    // Do all your error-checking IFs first and continue the 'normal' flow on
-    // the main level (thus avoiding nested IFs).
-    // So do like:
-    // if (!foundPair) {
-    //  // report
-    // }
-    // // print minMax
-
     // findMinMax(vect, &min, max);
     //
     // if (vect.size() != 0) {

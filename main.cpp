@@ -1,5 +1,5 @@
 #include <iostream>
-#include <string>
+// #include <string>
 #include <cstring>
 
 unsigned int countAndSay(std::string str) {
@@ -14,10 +14,13 @@ unsigned int countAndSay(std::string str) {
         unsigned int currentCount;
         do {
             currentCount = 0;
-            do {
+            while (end != str.size()) {
+                if (map[str[end]] == 1) {
+                    break;
+                }
                 map[str[end]] = 1;
                 end++;
-            } while ((map[str[end]] != 1) || (end != str.size()));
+            }
             currentCount = end - begin;
             if (currentCount > count) {
                 count = currentCount;

@@ -3,6 +3,7 @@
 #include <cstring>
 
 unsigned int countUniqueSubstring(std::string str) {
+    const unsigned int strSize = str.size();
     unsigned int begin = 0;
     unsigned int end = 0;
     unsigned int count = 0;
@@ -11,35 +12,30 @@ unsigned int countUniqueSubstring(std::string str) {
     
     memset(map, 0, 256 * sizeof(bool));
 
-    if (str.size() != 0) {
+    if (strSize != 0) {
         unsigned int currentCount;
         do {
             currentCount = 0;
-            while (end != str.size()) {
-                if (map[str[end]]) {
-                    for (unsigned int i = begin; i < end; i++) {
-                        if (str[i] == str[end]) {
-                            start = i + 1;
-                            break;
-                        }
-                    }
+            do {
+                if (end == strSize) {
                     break;
                 }
                 map[str[end]] = 1;
                 end++;
-            }
+            } while (map[str[end]] != 1);
             currentCount = end - begin;
             if (currentCount > count) {
                 count = currentCount;
             }
             for (unsigned int i = begin; i < end; i++) {
+                if (str[i] == str[end]) {
+                    start = i + 1;
+                }
                 map[str[i]] = 0;
-                std::cout << str[i] << " ";
             }
-            std::cout << std::endl;
+            map[str[end - 1]] = 1;
             begin = start;
-            std::cout << begin << std::endl;
-        } while (end != str.size());
+        } while (end < strSize);
     } else {
         std::cout << "[Empty string] = ";
     }
@@ -49,7 +45,7 @@ unsigned int countUniqueSubstring(std::string str) {
 
 int main() {
     // const std::string str = "";
-    // const std::string str = "abcdaefg";
+    /* const std::string str = "abcdaefg"; */
     const std::string str = "ababcaac";
     std::cout << "count = " << countUniqueSubstring(str) << std::endl;
 

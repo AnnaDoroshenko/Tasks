@@ -1,7 +1,6 @@
 #include <iostream>
-// #include <string>
-#include <cstring>
-#include <sstream>
+#include <string>
+/* #include <cstring> */
 
 /* unsigned int countUniqueSubstring(std::string str) { */
 /*     const unsigned int strSize = str.size(); */
@@ -71,7 +70,6 @@ std::string countAndSay (unsigned int num) {
             currentCount = 0;
         }
         resultString = currentString;
-        std::cout << resultString << std::endl;
     };
 
     return resultString;

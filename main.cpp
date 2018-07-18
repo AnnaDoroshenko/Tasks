@@ -47,27 +47,28 @@
 /* } */
 
 std::string countAndSay (unsigned int num) {
-    std::string resultString = "";
+    std::string resultString;
     std::string currentString;
-    unsigned int currentCount = 0;
+    unsigned int currentCount;
     char currentChar;
 
     if (num <= 0) {
         std::cout << "Invalid string number";
-        return resultString;
+        return "";
     }
 
     resultString = "1";
     for (unsigned int i = 1; i < num; i++) {
+        std::cout << resultString << std::endl;
         currentString = "";
         for (unsigned int i = 0; i < resultString.size(); ) {
+            currentCount = 0;
             currentChar = resultString[i];
             do {
                 currentCount++;
                 i++;
-            } while (currentChar == resultString[i]);
+            } while (currentChar == resultString[i]); // FIXME: you go outta bounds here with i
             currentString += std::to_string(currentCount) + currentChar;
-            currentCount = 0;
         }
         resultString = currentString;
     };

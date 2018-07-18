@@ -53,7 +53,7 @@ std::string countAndSay (unsigned int num) {
     char currentChar;
 
     if (num <= 0) {
-        std::cout << "Invalid string number" << std::endl;
+        std::cout << "Invalid string number";
         return resultString;
     }
 
@@ -81,7 +81,7 @@ int main() {
     /* const std::string str = "ababcaac"; */
     /* const std::string str = "abcdbcfg"; */
     /* std::cout << "count = " << countUniqueSubstring(str) << std::endl; */
-    const unsigned num = 6;
+    const unsigned num = 7;
     std::cout << countAndSay(num) << std::endl;
 
     return 0;

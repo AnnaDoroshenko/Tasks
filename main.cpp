@@ -25,7 +25,7 @@ int main() {
                 longestChunk = currentChunk; 
             }
         }
-        std::cout << longestChunk << std::endl;
+        // std::cout << longestChunk << std::endl;
 
         if (longestChunk == CHUNK_1) {
             if (CHUNK_1 < (CHUNK_2 + CHUNK_3)) {
@@ -42,10 +42,10 @@ int main() {
         }
 
         count++;
-        std::cout << " " << std::endl;
+        std::cout << count << ".... " << std::endl;
     };
 
-    std::cout << temp << std::endl;
+    // std::cout << temp << std::endl;
 
     return 0;
 } 

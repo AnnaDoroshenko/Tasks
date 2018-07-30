@@ -2,7 +2,6 @@
 /* #include <stdlib.h> // for srand(), rand() */
 /* #include <time.h> // for time() */
 
-
 int main() {
     srand(time(0)); // for automatic random number generation
     const float LENGTH = 1.0f;

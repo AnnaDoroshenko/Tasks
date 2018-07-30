@@ -5,41 +5,57 @@
 
 int main() {
     srand(time(0)); // for automatic random number generation
-    const unsigned int LENGTH = 1000000;
+    const float LENGTH = 1.0;
     unsigned int count = 0;
     unsigned int temp = 0;
     const unsigned int PRESICION = 1000000;
 
     while (count < PRESICION) {
-        const unsigned int CHUNK_1 = 1 + rand() % (LENGTH - 2);
-        // std::cout << CHUNK_1 << std::endl;
-        const unsigned int CHUNK_2 = 1 + rand() % (LENGTH - CHUNK_1 - 1);
-        // std::cout << CHUNK_2 << std::endl;
-        const unsigned int CHUNK_3 = LENGTH - (CHUNK_1 + CHUNK_2);
-        // std::cout << CHUNK_3 << std::endl;
+        float CHUNK_1;
+        float CHUNK_2;
+        float CHUNK_3;
+        const float POINT_1 = static_cast <float> (rand()) / static_cast <float> (RAND_MAX);
+        const float POINT_2 = static_cast <float> (rand()) / static_cast <float> (RAND_MAX);
 
-        const unsigned int ARRAY_OF_CHUNKS[3] = {CHUNK_1, CHUNK_2, CHUNK_3};
-        unsigned int longestChunk = ARRAY_OF_CHUNKS[0];
+        if (POINT_1 > POINT_2) {
+            CHUNK_1 = POINT_2;
+            CHUNK_2 = POINT_1 - POINT_2;
+            CHUNK_3 = LENGTH - POINT_1;
+        } else {
+            CHUNK_1 = POINT_1;
+            CHUNK_2 = POINT_2 - POINT_1;
+            CHUNK_3 = LENGTH - POINT_2;
+        }
+
+        const float ARRAY_OF_CHUNKS[3] = {CHUNK_1, CHUNK_2, CHUNK_3};
+        float longestChunk = ARRAY_OF_CHUNKS[0];
+        unsigned int indexOfTheLongestChunk = 0;
         for (unsigned int i = 1; i < 3; i++) {
             const unsigned int currentChunk = ARRAY_OF_CHUNKS[i];
             if (currentChunk > longestChunk) {
                 longestChunk = currentChunk; 
+                indexOfTheLongestChunk = i;
             }
         }
-        // std::cout << longestChunk << std::endl;
 
-        if (longestChunk == CHUNK_1) {
-            if (CHUNK_1 < (CHUNK_2 + CHUNK_3)) {
-                temp++;
-            }
-        } else if (longestChunk == CHUNK_2) {
-            if (CHUNK_2 < (CHUNK_1 + CHUNK_3)) {
-                temp++;
-            }
-        } else {
-            if (CHUNK_3 < (CHUNK_1 + CHUNK_2)) {
-                temp++;
-            }
+        switch (indexOfTheLongestChunk) {
+            case 0:
+                if (CHUNK_1 < (CHUNK_2 + CHUNK_3)) {
+                    temp++;
+                }
+                break;
+            case 1:
+                if (CHUNK_2 < (CHUNK_1 + CHUNK_3)) {
+                    temp++;
+                }
+                break;
+            case 2:
+                if (CHUNK_3 < (CHUNK_1 + CHUNK_2)) {
+                    temp++;
+                }
+                break;
+            default:
+                break;
         }
 
         count++;

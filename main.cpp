@@ -5,7 +5,7 @@
 
 int main() {
     srand(time(0)); // for automatic random number generation
-    const float LENGTH = 1.0;
+    const float LENGTH = 1.0; // FIXME: 1.0 === 1.0d. You use float => write 1.0f
     unsigned int count = 0;
     unsigned int temp = 0;
     const unsigned int PRESICION = 1000000;
@@ -31,7 +31,7 @@ int main() {
         float longestChunk = ARRAY_OF_CHUNKS[0];
         unsigned int indexOfTheLongestChunk = 0;
         for (unsigned int i = 1; i < 3; i++) {
-            const unsigned int currentChunk = ARRAY_OF_CHUNKS[i];
+            const unsigned int currentChunk = ARRAY_OF_CHUNKS[i]; // FIXME: "unsigned int" -> "float" !!!
             if (currentChunk > longestChunk) {
                 longestChunk = currentChunk; 
                 indexOfTheLongestChunk = i;

@@ -5,17 +5,18 @@
 
 int main() {
     srand(time(0)); // for automatic random number generation
+    const unsigned int LENGTH = 1000000;
     unsigned int count = 0;
     unsigned int temp = 0;
-    while (count < 100) {
-        const unsigned int LENGTH = 1 + rand() % 100;
-        std::cout << LENGTH << std::endl;
-        const unsigned int CHUNK_1 = 1 + rand() % LENGTH;
-        std::cout << CHUNK_1 << std::endl;
-        const unsigned int CHUNK_2 = 1 + rand() % (LENGTH - CHUNK_1);
-        std::cout << CHUNK_2 << std::endl;
+    const unsigned int PRESICION = 1000000;
+
+    while (count < PRESICION) {
+        const unsigned int CHUNK_1 = 1 + rand() % (LENGTH - 2);
+        // std::cout << CHUNK_1 << std::endl;
+        const unsigned int CHUNK_2 = 1 + rand() % (LENGTH - CHUNK_1 - 1);
+        // std::cout << CHUNK_2 << std::endl;
         const unsigned int CHUNK_3 = LENGTH - (CHUNK_1 + CHUNK_2);
-        std::cout << CHUNK_3 << std::endl;
+        // std::cout << CHUNK_3 << std::endl;
 
         const unsigned int ARRAY_OF_CHUNKS[3] = {CHUNK_1, CHUNK_2, CHUNK_3};
         unsigned int longestChunk = ARRAY_OF_CHUNKS[0];
@@ -42,10 +43,10 @@ int main() {
         }
 
         count++;
-        std::cout << count << ".... " << std::endl;
+        /* std::cout << ".... " << std::endl; */
     };
 
-    // std::cout << temp << std::endl;
+    std::cout << (float) temp / PRESICION << std::endl;
 
     return 0;
 } 

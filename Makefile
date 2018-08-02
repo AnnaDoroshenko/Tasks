@@ -6,6 +6,8 @@ classFiles =
 justHeaderFiles =
 # Compilation flags
 OPTIMIZATION_FLAG = -O0
+COMPILER_GLAGS = -Wall
+LINKER_FLAGS =
 
 
 # Auxiliary
@@ -16,13 +18,13 @@ filesH = $(addsuffix .h, $(classFiles) $(justHeaderFiles))
 all: cleanExe $(mainFileName)
 
 
-# Compilation
+# Compiler
 %.o: %.cpp $(filesH)
-	g++ $(OPTIMIZATION_FLAG) -c $< -std=c++17
+	g++ $(COMPILER_GLAGS) $(OPTIMIZATION_FLAG) -c $<
 
-# Execution
+# Linker
 $(mainFileName): $(filesObj)
-	g++ $(OPTIMIZATION_FLAG) $^ -o $@ -std=c++17
+	g++ $(COMPILER_GLAGS) $(OPTIMIZATION_FLAG) $(LINKER_FLAGS) $^ -o $@
 
 
 # Utils

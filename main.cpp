@@ -4,12 +4,11 @@
 // '0'..'9' -> 0..9
 // otherwise -> -1
 int toInt(char c) {
-    const unsigned int ASCII_CODE_DIFFERENCE = 48;
-    if (!('0' <= c <= '9')) {
-        return -1;
+    if ('0' <= c && c <= '9') {
+        return c - '0';
     }
 
-    return c - ASCII_CODE_DIFFERENCE;
+    return -1;
 }
 /*  */
 /*  */
@@ -66,7 +65,7 @@ int toInt(char c) {
 /*  */
 /*  */
 int main() {
-    std::cout << toInt('0') << std::endl;
+    std::cout << toInt('1') << std::endl;
 
 /*     Number number1( 111111111 ); */
 /*     Number number2("999999999"); */

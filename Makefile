@@ -1,12 +1,13 @@
 # The name of the main file and executable
-mainFileName = main
+mainFileName = functor
 # Files that have .h and .cpp versions
 classFiles =
 # Files that only have the .h version
 justHeaderFiles =
 # Compilation flags
 OPTIMIZATION_FLAG = -O0
-COMPILER_GLAGS = -Wall
+LANGUAGE_LEVEL = -std=c++17
+COMPILER_FLAGS = -Wall -Wextra -Wno-unused-parameter
 LINKER_FLAGS =
 
 
@@ -20,16 +21,16 @@ all: cleanExe $(mainFileName)
 
 # Compiler
 %.o: %.cpp $(filesH)
-	g++ $(COMPILER_GLAGS) $(OPTIMIZATION_FLAG) -c $<
+	g++ $(COMPILER_FLAGS) $(OPTIMIZATION_FLAG) $(LANGUAGE_LEVEL) -c $<
 
 # Linker
 $(mainFileName): $(filesObj)
-	g++ $(COMPILER_GLAGS) $(OPTIMIZATION_FLAG) $(LINKER_FLAGS) $^ -o $@
+	g++ $(COMPILER_FLAGS) $(OPTIMIZATION_FLAG) $(LANGUAGE_LEVEL) $(LINKER_FLAGS) $^ -o $@
 
 
 # Utils
 clean:
-	rm -f *.o $(mainFileName)
+	rm -f *.o *.gch .*.gch $(mainFileName) a.out
 
 cleanExe:
 	rm -f $(mainFileName)

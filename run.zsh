@@ -2,9 +2,10 @@
 
 make
 
-./main
+./functor
 # ./main
 
 rm -f *.o
 # rm -f main
-rm -f main
+# rm -f pyramid
+rm -f functor

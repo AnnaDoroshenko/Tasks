@@ -11,7 +11,6 @@ int toInt(char c) {
     return -1;
 }
 
-
 static const unsigned int MAX_DIGITS = 9;
 
 struct Number {
@@ -25,15 +24,26 @@ struct Number {
         }
 
         Number (unsigned int number) : overflow(false) {
-            for (unsigned int i = MAX_DIGITS; i > 0; i--) {
-                digits[i - 1] = number % 10;
+            for (int i = MAX_DIGITS - 1; i >= 0; i--) {
+                digits[i] = number % 10;
                 number /= 10;
             }
         }
 
         Number (const std::string& number) : overflow(false) {
+            if (number.size() > MAX_DIGITS) {
+                std::cout << "Invalid number size" << std::endl;
+                exit(-1);
+            }
+            for (int i = MAX_DIGITS - 1; i >= 0; i--) {
+                digits[i] = toInt(number.at(i));
+            }
             // TODO: init from "number"
             // Note: exit(-1) with a message if number.size() > MAX_DIGITS;
+        }
+
+        void setOverflow (bool value) {
+            overflow = value;
         }
 
         bool isOverflow() const {
@@ -51,6 +61,7 @@ struct Number {
         }
 
         friend std::ostream& operator<<(std::ostream& stream, const Number& number);
+        friend Number operator+(const Number& number1, const Number& number2);
 };
 
 
@@ -69,16 +80,28 @@ std::ostream& operator<<(std::ostream& stream, const Number& number) {
 
 // Don't forget about the overflow flag
 Number operator+(const Number& number1, const Number& number2) {
-    // TODO
+    Number result();
+    unsigned int carryOver = 0;
+    for (unsigned int i = 0; i < MAX_DIGITS; i++) {
+        const unsigned int sum = number1[i] + number2[i] + carryOver;
+        result[i] = sum % 10;
+        carryOver = ((sum / 10) > 0) ?  1 : 0;
+    }
+    if (carryOver) {
+        result.setOverflow(true);
+    }
+
+    return result;
 }
 
 
 
 int main() {
 
-    Number number1( 0 );
-    std::cout << number1 << std::endl;
-    /* Number number2("999999999"); */
+    /* Number number1( 0 ); */
+    /* std::cout << number1 << std::endl; */
+    Number number2("9999999999");
+    std::cout << number2 << std::endl;
     /* std::cout << number1 << " + " << number2 << " = " << (number1 + number2) << std::endl; */
 
     return 0;
